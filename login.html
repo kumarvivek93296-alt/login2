@@ -1,50 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Login - Tricolor Trends</title>
-</head>
-<body>
-  <h2>Login / Signup</h2>
-  
-  <input type="email" id="email" placeholder="Email"><br>
-  <input type="password" id="password" placeholder="Password"><br>
-  <button onclick="signup()">Sign Up</button>
-  <button onclick="login()">Login</button>
-  <button onclick="logout()">Logout</button>
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-  <p id="status"></p>
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDBMmZQv6zgk-k0kn6_VbwcOiffxfW8zgs",
+  authDomain: "tricolor-loin-2.firebaseapp.com",
+  projectId: "tricolor-loin-2",
+  storageBucket: "tricolor-loin-2.firebasestorage.app",
+  messagingSenderId: "223624634693",
+  appId: "1:223624634693:web:0d425f7570485acff1de2c",
+  measurementId: "G-XWY661G2QT"
+};
 
-  <!-- Firebase -->
-  <script src="firebase.js"></script>
-
-  <script>
-    function signup(){
-      auth.createUserWithEmailAndPassword(
-        document.getElementById("email").value,
-        document.getElementById("password").value
-      )
-      .then(user => {
-        document.getElementById("status").innerText = "Signup successful: " + user.user.email;
-      })
-      .catch(err => alert(err.message));
-    }
-
-    function login(){
-      auth.signInWithEmailAndPassword(
-        document.getElementById("email").value,
-        document.getElementById("password").value
-      )
-      .then(user => {
-        document.getElementById("status").innerText = "Login successful: " + user.user.email;
-        window.location.href = "client-upload.html"; // Default: client side
-      })
-      .catch(err => alert(err.message));
-    }
-
-    function logout(){
-      auth.signOut();
-      document.getElementById("status").innerText = "Logged out!";
-    }
-  </script>
-</body>
-</html>
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
