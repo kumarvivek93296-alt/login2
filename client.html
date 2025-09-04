@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Client Dashboard</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <h2>Upload New Project</h2>
+  <form id="projectForm">
+    <input type="text" id="title" placeholder="Project Title" required><br>
+    <textarea id="desc" placeholder="Project Description"></textarea><br>
+    <input type="text" id="budget" placeholder="Budget" required><br>
+    <input type="text" id="skills" placeholder="Required Skills" required><br>
+    <button type="submit">Upload Project</button>
+  </form>
+
+  <script>
+    const form = document.getElementById("projectForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      await db.collection("projects").add({
+        title: document.getElementById("title").value,
+        desc: document.getElementById("desc").value,
+        budget: document.getElementById("budget").value,
+        skills: document.getElementById("skills").value,
+        status: "Open"
+      });
+      alert("Project Uploaded!");
+      form.reset();
+    });
+  </script>
+</body>
+</html>

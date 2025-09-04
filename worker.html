@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Worker Dashboard</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <h2>Available Projects</h2>
+  <div id="projectList"></div>
+
+  <script>
+    const projectList = document.getElementById("projectList");
+
+    db.collection("projects").where("status", "==", "Open").onSnapshot(snapshot => {
+      projectList.innerHTML = "";
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        projectList.innerHTML += `
+          <div style="border:1px solid #ccc; margin:10px; padding:10px;">
+            <h3>${data.title}</h3>
+            <p>${data.desc}</p>
+            <p><b>Budget:</b> ${data.budget}</p>
+            <p><b>Skills:</b> ${data.skills}</p>
+            <button onclick="applyProject('${doc.id}')">Apply</button>
+          </div>
+        `;
+      });
+    });
+
+    async function applyProject(id) {
+      await db.collection("projects").doc(id).update({
+        status: "In Progress"
+      });
+      alert("You applied for this project!");
+    }
+  </script>
+</body>
+</html>
