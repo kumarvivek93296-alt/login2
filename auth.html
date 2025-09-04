@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth — Tricolor Trends</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/auth.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Auth — Tricolor Trends</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="client.html">Client</a>
+      <a href="worker.html">Worker</a>
+    </nav>
+  </header>
+  <main class="container">
+    <section class="card">
+      <h2>Create Account</h2>
+      <label>Email</label><input id="regEmail" type="email"/>
+      <label>Password</label><input id="regPassword" type="password"/>
+      <label>Display Name</label><input id="regName" type="text"/>
+      <label>Role</label>
+      <select id="regRole">
+        <option value="client">Client</option>
+        <option value="worker">Worker</option>
+      </select>
+      <button id="registerBtn" class="btn">Register</button>
+    </section>
+    <section class="card">
+      <h2>Login</h2>
+      <label>Email</label><input id="loginEmail" type="email"/>
+      <label>Password</label><input id="loginPassword" type="password"/>
+      <button id="loginBtn" class="btn">Login</button>
+    </section>
+  </main>
+</body>
+</html>
