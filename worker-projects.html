@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Worker Project List</title>
+</head>
+<body>
+  <h2>Available Projects</h2>
+  <ul id="projectList"></ul>
+
+  <!-- Firebase -->
+  <script src="firebase.js"></script>
+
+  <script>
+    db.collection("projects").where("status","==","open")
+      .onSnapshot(snapshot=>{
+        let list = document.getElementById("projectList");
+        list.innerHTML="";
+        snapshot.forEach(doc=>{
+          let data = doc.data();
+          list.innerHTML += `<li>
+            <strong>${data.title}</strong> - ₹${data.budget} <br>
+            ${data.desc}
+          </li>`;
+        });
+      });
+  </script>
+</body>
+</html>

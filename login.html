@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Tricolor Trends</title>
+</head>
+<body>
+  <h2>Login / Signup</h2>
+  
+  <input type="email" id="email" placeholder="Email"><br>
+  <input type="password" id="password" placeholder="Password"><br>
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+
+  <p id="status"></p>
+
+  <!-- Firebase -->
+  <script src="firebase.js"></script>
+
+  <script>
+    function signup(){
+      auth.createUserWithEmailAndPassword(
+        document.getElementById("email").value,
+        document.getElementById("password").value
+      )
+      .then(user => {
+        document.getElementById("status").innerText = "Signup successful: " + user.user.email;
+      })
+      .catch(err => alert(err.message));
+    }
+
+    function login(){
+      auth.signInWithEmailAndPassword(
+        document.getElementById("email").value,
+        document.getElementById("password").value
+      )
+      .then(user => {
+        document.getElementById("status").innerText = "Login successful: " + user.user.email;
+        window.location.href = "client-upload.html"; // Default: client side
+      })
+      .catch(err => alert(err.message));
+    }
+
+    function logout(){
+      auth.signOut();
+      document.getElementById("status").innerText = "Logged out!";
+    }
+  </script>
+</body>
+</html>

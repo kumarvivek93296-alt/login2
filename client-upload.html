@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Client Project Upload</title>
+</head>
+<body>
+  <h2>Upload Project</h2>
+  
+  <form id="projectForm">
+    <input type="text" id="title" placeholder="Project Title" required><br>
+    <textarea id="desc" placeholder="Project Description"></textarea><br>
+    <input type="number" id="budget" placeholder="Budget" required><br>
+    <button type="submit">Upload Project</button>
+  </form>
+
+  <!-- Firebase -->
+  <script src="firebase.js"></script>
+
+  <script>
+    document.getElementById("projectForm").addEventListener("submit", function(e){
+      e.preventDefault();
+      db.collection("projects").add({
+        title: document.getElementById("title").value,
+        desc: document.getElementById("desc").value,
+        budget: document.getElementById("budget").value,
+        status: "open",
+        createdAt: new Date()
+      })
+      .then(()=>{
+        alert("Project uploaded successfully!");
+        document.getElementById("projectForm").reset();
+      })
+      .catch(err=>alert(err.message));
+    });
+  </script>
+</body>
+</html>
