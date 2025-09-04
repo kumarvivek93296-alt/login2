@@ -14,7 +14,27 @@ const firebaseConfig = {
   messagingSenderId: "223624634693",
   appId: "1:223624634693:web:0d425f7570485acff1de2c",
   measurementId: "G-XWY661G2QT"
+};// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDq6fOmSq2GpG9uCNVaBAWwLA7xhMs2BtE",
+  authDomain: "tricolor-login.firebaseapp.com",
+  projectId: "tricolor-login",
+  storageBucket: "tricolor-login.firebasestorage.app",
+  messagingSenderId: "333980260139",
+  appId: "1:333980260139:web:33d700af829a09ef5f976e",
+  measurementId: "G-B02KE74S9N"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
